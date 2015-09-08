@@ -1,3 +1,5 @@
+var templates = {};
+
 function render(template, model) {
 
     // Create a real Javascript Object from the model Map 
@@ -10,7 +12,15 @@ function render(template, model) {
             data[k] = model[k]; 
         } 
     }  
-    // TODO Manage compiled template cache
-    var compiledTemplate = Handlebars.compile(template); 
+
+    var compiledTemplate;
+    if (templates[template] === undefined) {
+        compiledTemplate = Handlebars.compile(template); 
+        templates[template] = compiledTemplate;
+    }
+    else {
+        compiledTemplate = templates[template];
+    }
+
     return compiledTemplate(data);
 }
