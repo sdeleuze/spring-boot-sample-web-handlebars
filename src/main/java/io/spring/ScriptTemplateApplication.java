@@ -22,7 +22,7 @@ public class ScriptTemplateApplication {
 				"/META-INF/resources/webjars/handlebars/3.0.0-1/handlebars.js",
 				"/static/render.js");
 		configurer.setRenderFunction("render");
-		configurer.setThreadBound(true);
+		configurer.setSharedEngine(false);
 		return configurer;
 	}
 
