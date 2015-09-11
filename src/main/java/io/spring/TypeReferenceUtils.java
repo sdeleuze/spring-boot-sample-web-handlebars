@@ -16,26 +16,23 @@
 
 package io.spring;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import static io.spring.TypeReferenceUtils.hash;
+import com.benjiweber.typeref.NamedValue;
 import static java.util.Arrays.asList;
 
-import org.springframework.composed.web.Get;
-import org.springframework.stereotype.Controller;
+/**
+ * @author Sebastien Deleuze
+ */
+public class TypeReferenceUtils {
 
-@Controller
-public class HandlebarsController {
-
-	@Get("/home")
-	Map<String, ?> home() {
-		return hash(
-				title -> "Title example",
-				comments -> asList(
-						new Comment("author1", "content1"),
-						new Comment("author2", "content2"),
-						new Comment("author3", "content3"))
-				);
+	public static <T> Map<String, T> hash(NamedValue<T>... keyValuePairs) {
+		Map<String, T> map = new HashMap<>();
+		asList(keyValuePairs)
+			.stream()
+			.forEach(kvp -> map.put(kvp.name(), kvp.value()));
+		return map;
 	}
 
 }
