@@ -27,9 +27,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ScriptTemplateApplication.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest("server.port:0")
-public class ScriptTemplateControllerIntegrationTests {
+public class HandlebarsControllerIntegrationTests {
 
 	@Value("${local.server.port}")
 	Integer port;
@@ -37,7 +37,7 @@ public class ScriptTemplateControllerIntegrationTests {
 	@Test
 	public void home() {
 		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.getForObject("http://localhost:" + port, String.class);
+		String result = restTemplate.getForObject("http://localhost:" + port + "/home", String.class);
 		assertTrue(result.contains("<li>author1 content1</li>"));
 	}
 

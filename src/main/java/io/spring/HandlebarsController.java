@@ -24,9 +24,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ScriptTemplateController {
+public class HandlebarsController {
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	String home(Model model) {
 		model.addAttribute("title", "Title example");
 		List comments = Arrays.asList(new Comment("author1", "content1"),
